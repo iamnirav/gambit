@@ -10,33 +10,34 @@ import initDb from './db';
 const CHARACTER_ID = 'qzCn6i1Y3fdKTE45iUZp';
 const db = initDb();
 const characterDoc = db.collection('characters').doc(CHARACTER_ID);
+const INITIAL_STATE = {
+  playbook: '',
+  name: '',
+  alias: '',
+  look: '',
+  heritage: '',
+  background: '',
+  vice: '',
+  cred: 0,
+  stash: 0,
+  stress: 0,
+  healing: 0,
+  load: 0,
+  playbookXP: 0,
+  trauma: [],
+  harm: {},
+  contacts: {},
+  abilities: {},
+  armor: {},
+  items: {},
+  actionRatings: {},
+  attributesXP: {},
+};
 
 export const CharacterContext = createContext({});
 
 const Data = props => {
-  const [character, setCharacter] = useState({
-    playbook: '',
-    name: '',
-    alias: '',
-    look: '',
-    heritage: '',
-    background: '',
-    vice: '',
-    cred: 0,
-    stash: 0,
-    stress: 0,
-    healing: 0,
-    load: 0,
-    playbookXP: 0,
-    trauma: [],
-    harm: {},
-    contacts: {},
-    abilities: {},
-    armor: {},
-    items: {},
-    actionRatings: {},
-    attributesXP: {},
-  });
+  const [character, setCharacter] = useState(INITIAL_STATE);
 
   useEffect(() => {
     return characterDoc.onSnapshot(

@@ -1,10 +1,11 @@
 import Data from './Data';
-import { Screen, Container } from './components';
+import { Screen, Header, Container } from './components';
 
 const App = () => {
   return (
     <Data>
-      <Container>
+      <Header />
+      <Container fluid>
         <Screen />
       </Container>
     </Data>

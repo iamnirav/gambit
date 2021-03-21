@@ -1,10 +1,30 @@
 import useCharacter from '../hooks/useCharacter';
-// import './Screen.scss';
+
+const FIELDS = [
+  'alias',
+  'playbook',
+  'name',
+  'look',
+  'heritage',
+  'background',
+  'vice',
+];
 
 const Screen = () => {
-  const character = useCharacter();
-  console.log(character);
-  return <div className="Screen"></div>;
+  const { character } = useCharacter();
+  return (
+    <div className="Screen">
+      <h2 className="card-title">Bio</h2>
+      <dl className="row">
+        {FIELDS.map(field => (
+          <>
+            <dt className="col-4">{field}: </dt>
+            <dd className="col-8">{character[field] || 'n/a'}</dd>
+          </>
+        ))}
+      </dl>
+    </div>
+  );
 };
 
 export default Screen;
