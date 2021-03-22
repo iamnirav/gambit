@@ -3,6 +3,10 @@ import { MiniHarm, Container } from './';
 
 const Header = () => {
   const { character } = useCharacter();
+  const itemLoad = Object.values(character.items).reduce(
+    (acc, amt) => acc + amt,
+    0,
+  );
   return (
     <header className="Header shadow-sm pt-1" style={{ height: 100 }}>
       <Container>
@@ -10,9 +14,9 @@ const Header = () => {
 
         <div className="d-flex justify-content-between">
           <div className="p-1">the {character.playbook}</div>
-          <div className="p-1">stress: {character.stress} / 9</div>
+          <div className="p-1">stress: {character.stress}/9</div>
           <div className="p-1 align-middle">
-            load: {Object.values(character.items).length} / {character.load}
+            load: {itemLoad}/{character.load}
           </div>
           <div className="p-1">
             harm: <MiniHarm harm={character.harm} />
