@@ -1,5 +1,5 @@
 import useCharacter from '../hooks/useCharacter';
-import { Screen } from './';
+import { Screen, Badge } from './';
 
 const StressScreen = () => {
   const { character } = useCharacter();
@@ -21,7 +21,9 @@ const StressScreen = () => {
       </div>
       <h3 className="mt-4">Trauma</h3>
       {trauma.map(traumaItem => (
-        <p key={traumaItem}>{traumaItem}</p>
+        <Badge rounded color="secondary" key={traumaItem}>
+          {traumaItem}
+        </Badge>
       ))}
       <h3 className="mt-4">Harm</h3>
       <ul className="list-group">
