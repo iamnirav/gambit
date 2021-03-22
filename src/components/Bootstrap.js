@@ -8,5 +8,5 @@ const d = (name, { className, children, ...props }) => (
 
 export const Card = props => d('card', props);
 export const CardBody = props => d('card-body', props);
-export const Container = props =>
-  d(props.fluid ? 'container-fluid' : 'container', props);
+export const Container = ({ fluid, ...props }) =>
+  d(fluid ? 'container-fluid' : 'container', props);

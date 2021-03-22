@@ -1,0 +1,40 @@
+.MiniHarm {
+  .level-one,
+  .level-two {
+    display: flex;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 4px;
+      margin: 1px 1px 0 0;
+      border: 1px solid black;
+      border-radius: 2px;
+    }
+
+    &.filled-left::before {
+      background-color: black;
+    }
+
+    &.filled-right::after {
+      background-color: black;
+    }
+  }
+
+  .level-three {
+    &::before {
+      content: "";
+      display: block;
+      width: 17px;
+      height: 4px;
+      border: 1px solid black;
+      border-radius: 2px;
+    }
+
+    &.filled::before {
+      background-color: black;
+    }
+  }
+}
