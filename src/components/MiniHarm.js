@@ -3,7 +3,7 @@ import './MiniHarm.scss';
 
 const MiniHarm = ({ harm }) => {
   return (
-    <div className="MiniHarm d-inline-block">
+    <div className="MiniHarm">
       <div
         className={classNames('level-three', {
           filled: harm.levelThree,
