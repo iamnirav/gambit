@@ -1,24 +1,31 @@
 import useCharacter from '../hooks/useCharacter';
-import { Screen, Badge, Checkbox, Progress } from './';
+import { Screen, Badge, Checkbox, Progress, Icon, MiniHarm } from './';
 
 const StressScreen = () => {
   const { character, update } = useCharacter();
   const { stress, trauma, harm, healing, armor } = character;
   return (
     <Screen title="Stress & Harm">
-      <h3 className="mt-4">Stress</h3>
+      <h3 className="mt-4">
+        <Icon name="speedometer" /> Stress
+      </h3>
       <Progress now={stress} max={9}>
         {stress}/9
       </Progress>
 
-      <h3 className="mt-4">Trauma</h3>
+      <h3 className="mt-4">
+        <Icon name="lightning" /> Trauma
+      </h3>
       {trauma.map(traumaItem => (
         <Badge rounded color="secondary" key={traumaItem}>
           {traumaItem}
         </Badge>
       ))}
 
-      <h3 className="mt-4">Harm</h3>
+      <h3 className="mt-4">
+        &nbsp;
+        <MiniHarm harm={harm} /> Harm
+      </h3>
       <ul className="list-group">
         <li className="list-group-item">
           <div className="row">
@@ -56,12 +63,16 @@ const StressScreen = () => {
           </div>
         </li>
       </ul>
-      <h4 className="mt-3">Recovery</h4>
+      <h4 className="mt-3">
+        <Icon name="plus-square" /> Recovery
+      </h4>
       <Progress now={healing} max={6}>
         {healing}/6
       </Progress>
 
-      <h3 className="mt-4">Armor</h3>
+      <h3 className="mt-4">
+        <Icon name="shield" /> Armor
+      </h3>
       {['standard', 'heavy', 'special'].map(type => (
         <Checkbox
           key={type}

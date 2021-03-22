@@ -1,5 +1,5 @@
 import useCharacter from '../hooks/useCharacter';
-import { MiniHarm, Container } from './';
+import { MiniHarm, Container, Icon } from './';
 
 const Header = () => {
   const { character } = useCharacter();
@@ -8,18 +8,20 @@ const Header = () => {
     0,
   );
   return (
-    <header className="Header shadow-sm pt-1" style={{ height: 100 }}>
+    <header className="Header pt-1 border-bottom" style={{ height: 100 }}>
       <Container>
         <h1 className="display-1">{character.alias || character.name}</h1>
 
         <div className="d-flex justify-content-between">
           <div className="p-1">the {character.playbook}</div>
-          <div className="p-1">stress: {character.stress}/9</div>
+          <div className="p-1">
+            <Icon name="speedometer" /> {character.stress}/9
+          </div>
           <div className="p-1 align-middle">
-            load: {itemLoad}/{character.load}
+            <Icon name="box-seam" /> {itemLoad}/{character.load}
           </div>
           <div className="p-1">
-            harm: <MiniHarm harm={character.harm} />
+            <MiniHarm harm={character.harm} />
           </div>
         </div>
       </Container>
