@@ -17,8 +17,8 @@ const BioScreen = () => {
     <Screen title="Bio">
       <dl className="row">
         {FIELDS.map(field => [
-          <dt className="col-4" key={field}>
-            {field}:{' '}
+          <dt className="col-4 text-end" key={field}>
+            {field}
           </dt>,
           <dd className="col-8" key={field + '-value'}>
             {character[field] || 'n/a'}

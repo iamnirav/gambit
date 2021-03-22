@@ -1,5 +1,11 @@
 import Data from './Data';
-import { Header, Screens, BioScreen, StressScreen } from './components';
+import {
+  Header,
+  Screens,
+  BioScreen,
+  StressScreen,
+  ActionsScreen,
+} from './components';
 
 const App = () => {
   return (
@@ -8,6 +14,7 @@ const App = () => {
       <Screens>
         <BioScreen />
         <StressScreen />
+        <ActionsScreen />
       </Screens>
     </Data>
   );
