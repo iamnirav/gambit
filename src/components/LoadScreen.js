@@ -4,9 +4,34 @@ import { commonItems, playbookItems } from '../game/items';
 
 const LoadScreen = () => {
   const { character, update } = useCharacter();
-  const { playbook, load, items } = character;
+  const { playbook, load: characterLoad, items } = character;
+
+  if (!playbookItems[playbook]) return null;
+
   const itemLoad = Object.values(items).reduce((acc, amt) => acc + amt, 0);
-  const availableItems = [...(playbookItems[playbook] || []), ...commonItems];
+
+  const Item = ({ name, load }) => (
+    <Checkbox
+      key={name}
+      checked={items[name] !== undefined}
+      disabled={items[name] === undefined && itemLoad + load > characterLoad}
+      onChange={() => {
+        const newItems = { ...items };
+        if (newItems[name] !== undefined) {
+          delete newItems[name];
+        } else {
+          newItems[name] = load;
+        }
+        update({ items: newItems });
+      }}
+      id={`item-${name}`}
+    >
+      <span className={load ? '' : 'fst-italic'}>
+        {name} - {load}
+      </span>
+    </Checkbox>
+  );
+
   return (
     <Screen title="Load">
       <div className="btn-group mb-3 w-100" role="group" aria-label="load size">
@@ -16,7 +41,7 @@ const LoadScreen = () => {
           name="btnradio"
           id="btnradio1"
           autoComplete="off"
-          checked={load === 3}
+          checked={characterLoad === 3}
           onChange={() => update({ load: 3 })}
         />
         <label className="btn btn-outline-primary" htmlFor="btnradio1">
@@ -29,7 +54,7 @@ const LoadScreen = () => {
           name="btnradio"
           id="btnradio2"
           autoComplete="off"
-          checked={load === 5}
+          checked={characterLoad === 5}
           onChange={() => update({ load: 5 })}
         />
         <label className="btn btn-outline-primary" htmlFor="btnradio2">
@@ -42,37 +67,21 @@ const LoadScreen = () => {
           name="btnradio"
           id="btnradio3"
           autoComplete="off"
-          checked={load === 6}
+          checked={characterLoad === 6}
           onChange={() => update({ load: 6 })}
         />
         <label className="btn btn-outline-primary" htmlFor="btnradio3">
           6 heavy
         </label>
       </div>
-
-      <Progress now={itemLoad} max={load}>
-        {itemLoad}/{load}
-      </Progress>
-
-      {availableItems.map(({ name, load }) => (
-        <Checkbox
-          key={name}
-          checked={items[name] !== undefined}
-          onChange={() => {
-            const newItems = { ...items };
-            if (newItems[name]) {
-              delete newItems[name];
-            } else {
-              newItems[name] = load;
-            }
-            update({ items: newItems });
-          }}
-          id={`item-${name}`}
-        >
-          <span className={load ? '' : 'fst-italic'}>
-            {name} - {load}
-          </span>
-        </Checkbox>
+      <Progress now={itemLoad} max={characterLoad} />
+      <hr />
+      {playbookItems[playbook].map(item => (
+        <Item key={item.name} {...item} />
+      ))}
+      <hr />
+      {commonItems.map(item => (
+        <Item key={item.name} {...item} />
       ))}
     </Screen>
   );

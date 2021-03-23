@@ -5,6 +5,7 @@ import {
   BioScreen,
   StressScreen,
   ActionsScreen,
+  AbilitiesScreen,
   LoadScreen,
 } from './components';
 
@@ -16,6 +17,7 @@ const App = () => {
         <BioScreen />
         <StressScreen />
         <ActionsScreen />
+        <AbilitiesScreen />
         <LoadScreen />
       </Screens>
     </Data>

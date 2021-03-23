@@ -9,9 +9,11 @@ const StressScreen = () => {
       <h3 className="mt-4">
         <Icon name="speedometer" /> Stress
       </h3>
-      <Progress now={stress} max={9}>
-        {stress}/9
-      </Progress>
+      <Progress
+        now={stress}
+        max={9}
+        add={diff => update({ stress: stress + diff })}
+      />
 
       <h3 className="mt-4">
         <Icon name="lightning" /> Trauma
@@ -66,9 +68,11 @@ const StressScreen = () => {
       <h4 className="mt-3">
         <Icon name="plus-square" /> Recovery
       </h4>
-      <Progress now={healing} max={6}>
-        {healing}/6
-      </Progress>
+      <Progress
+        now={healing}
+        max={6}
+        add={diff => update({ healing: healing + diff })}
+      />
 
       <h3 className="mt-4">
         <Icon name="shield" /> Armor
