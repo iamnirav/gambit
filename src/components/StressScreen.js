@@ -19,10 +19,33 @@ const StressScreen = () => {
         <Icon name="lightning" /> Trauma
       </h3>
       {trauma.map(traumaItem => (
-        <Badge rounded color="secondary" key={traumaItem}>
-          {traumaItem}
+        <Badge
+          rounded
+          color="secondary"
+          key={traumaItem}
+          style={{ marginLeft: 5 }}
+          onClick={() => {
+            if (window.confirm(`Remove trauma "${traumaItem}"?`)) {
+              update({ trauma: trauma.filter(t => t !== traumaItem) });
+            }
+          }}
+        >
+          {traumaItem} <Icon name="x" />
         </Badge>
       ))}
+      <Badge
+        rounded
+        color="secondary"
+        style={{ marginLeft: 5 }}
+        onClick={() => {
+          const input = window.prompt('Add new trauma');
+          if (input) {
+            update({ trauma: [...trauma, input] });
+          }
+        }}
+      >
+        <Icon name="plus" />
+      </Badge>
 
       <h3 className="mt-4">
         &nbsp;
@@ -31,22 +54,54 @@ const StressScreen = () => {
       <ul className="list-group">
         <li className="list-group-item">
           <div className="row">
-            <div className="col-2 border-end">3</div>
-            <div className="col-8 border-end">{harm.levelThree}</div>
-            <div className="col-2">need help</div>
-          </div>
-        </li>
-        <li className="list-group-item">
-          <div className="row">
-            <div className="col-2 border-end">2</div>
-            <div className="col-4 border-end">
-              {harm.levelTwo && harm.levelTwo[0]}
+            <div className="col-2 border-end d-flex justify-content-center align-items-center">
+              <strong>3</strong>
             </div>
-            <div className="col-4 border-end">
-              {harm.levelTwo && harm.levelTwo[1]}
+            <div
+              className="col-8 border-end d-flex justify-content-center align-items-center"
+              onClick={() => {
+                const input = window.prompt('Edit harm', harm.levelThree);
+                if (input) {
+                  update({ harm: { ...harm, levelThree: input } });
+                }
+              }}
+            >
+              {harm.levelThree}
             </div>
             <div className="col-2">
-              -1d
+              <strong>need help</strong>
+            </div>
+          </div>
+        </li>
+        <li className="list-group-item">
+          <div className="row">
+            <div className="col-2 border-end d-flex justify-content-center align-items-center">
+              <strong>2</strong>
+            </div>
+            <div
+              className="col-4 border-end d-flex justify-content-center align-items-center"
+              onClick={() => {
+                const input = window.prompt('Edit harm', harm.levelTwoA);
+                if (input) {
+                  update({ harm: { ...harm, levelTwoA: input } });
+                }
+              }}
+            >
+              {harm.levelTwoA}
+            </div>
+            <div
+              className="col-4 border-end d-flex justify-content-center align-items-center"
+              onClick={() => {
+                const input = window.prompt('Edit harm', harm.levelTwoB);
+                if (input) {
+                  update({ harm: { ...harm, levelTwoB: input } });
+                }
+              }}
+            >
+              {harm.levelTwoB}
+            </div>
+            <div className="col-2">
+              <strong>-1d</strong>
               <br />
               <br />
             </div>
@@ -54,14 +109,34 @@ const StressScreen = () => {
         </li>
         <li className="list-group-item">
           <div className="row">
-            <div className="col-2 border-end">1</div>
-            <div className="col-4 border-end">
-              {harm.levelOne && harm.levelOne[0]}
+            <div className="col-2 border-end d-flex justify-content-center align-items-center">
+              <strong>1</strong>
             </div>
-            <div className="col-4 border-end">
-              {harm.levelOne && harm.levelOne[1]}
+            <div
+              className="col-4 border-end d-flex justify-content-center align-items-center"
+              onClick={() => {
+                const input = window.prompt('Edit harm', harm.levelOneA);
+                if (input) {
+                  update({ harm: { ...harm, levelOneA: input } });
+                }
+              }}
+            >
+              {harm.levelOneA}
             </div>
-            <div className="col-2">less effect</div>
+            <div
+              className="col-4 border-end d-flex justify-content-center align-items-center"
+              onClick={() => {
+                const input = window.prompt('Edit harm', harm.levelOneB);
+                if (input) {
+                  update({ harm: { ...harm, levelOneB: input } });
+                }
+              }}
+            >
+              {harm.levelOneB}
+            </div>
+            <div className="col-2">
+              <strong>less effect</strong>
+            </div>
           </div>
         </li>
       </ul>
