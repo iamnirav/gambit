@@ -12,8 +12,9 @@ const db = initDb();
 const characterDoc = db.collection('characters').doc(CHARACTER_ID);
 const INITIAL_STATE = {
   playbook: '',
-  name: '',
   alias: '',
+  name: '',
+  pronouns: '',
   look: '',
   heritage: '',
   background: '',
