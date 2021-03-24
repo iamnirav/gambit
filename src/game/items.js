@@ -23,6 +23,14 @@ export const playbookItems = {
     { name: 'Spare Parts', load: 1 },
     { name: 'Genius Pet', load: 0 },
   ],
+  mystic: [
+    { name: 'Fine Melee Weapon', load: 2 },
+    { name: 'Offerings', load: 1 },
+    { name: 'Trappings of Religion', load: 1 },
+    { name: 'Outdated Religious Outfit', load: 0 },
+    { name: 'Memento of Your Travels', load: 0 },
+    { name: 'Precursor Artifact', load: 1 },
+  ],
   stitch: [
     { name: 'Fine Medkit', load: 2 },
     { name: 'Fine Bedside Manner', load: 0 },

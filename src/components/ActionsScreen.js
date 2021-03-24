@@ -1,14 +1,9 @@
 import marked from 'marked';
 
 import useCharacter from '../hooks/useCharacter';
-import ABILITIES from '../game/abilities.js';
+import ABILITIES from '../game/abilities';
+import ACTIONS from '../game/actions';
 import { Screen, Icon, Badge } from './';
-
-const ATTRIBUTES = [
-  { attribute: 'insight', actions: ['doctor', 'hack', 'study', 'rig'] },
-  { attribute: 'prowess', actions: ['helm', 'scrap', 'scramble', 'skulk'] },
-  { attribute: 'resolve', actions: ['attune', 'command', 'consort', 'sway'] },
-];
 
 const ActionsScreen = () => {
   const { character, update } = useCharacter();
@@ -42,7 +37,7 @@ const ActionsScreen = () => {
   return (
     <Screen title="Actions & Abilities">
       <div className="d-flex justify-content-between">
-        {ATTRIBUTES.map(({ attribute, actions }) => (
+        {ACTIONS.map(({ attribute, actions }) => (
           <div key={attribute}>
             <strong>
               {attribute}{' '}

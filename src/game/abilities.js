@@ -1,4 +1,16 @@
 export default {
+  mystic: [
+    {
+      name: 'The Way',
+      description:
+        'You can spend a **gambit** instead of paying any **stress** cost.',
+    },
+    {
+      name: 'Kinetics',
+      description:
+        'You can **push yourself** to do one of the following: *use the Way to throw a table-sized object with dangerous force—propel yourself briefly with superhuman speed.*',
+    },
+  ],
   stitch: [
     {
       name: 'I’m a Doctor, Not a…',
