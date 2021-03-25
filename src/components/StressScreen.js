@@ -61,7 +61,7 @@ const StressScreen = () => {
               className="col-8 border-end d-flex justify-content-center align-items-center"
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelThree);
-                if (input) {
+                if (typeof input === 'string') {
                   update({ harm: { ...harm, levelThree: input } });
                 }
               }}
@@ -82,7 +82,7 @@ const StressScreen = () => {
               className="col-4 border-end d-flex justify-content-center align-items-center"
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelTwoA);
-                if (input) {
+                if (typeof input === 'string') {
                   update({ harm: { ...harm, levelTwoA: input } });
                 }
               }}
@@ -93,7 +93,7 @@ const StressScreen = () => {
               className="col-4 border-end d-flex justify-content-center align-items-center"
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelTwoB);
-                if (input) {
+                if (typeof input === 'string') {
                   update({ harm: { ...harm, levelTwoB: input } });
                 }
               }}
@@ -116,7 +116,7 @@ const StressScreen = () => {
               className="col-4 border-end d-flex justify-content-center align-items-center"
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelOneA);
-                if (input) {
+                if (typeof input === 'string') {
                   update({ harm: { ...harm, levelOneA: input } });
                 }
               }}
@@ -127,7 +127,7 @@ const StressScreen = () => {
               className="col-4 border-end d-flex justify-content-center align-items-center"
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelOneB);
-                if (input) {
+                if (typeof input === 'string') {
                   update({ harm: { ...harm, levelOneB: input } });
                 }
               }}

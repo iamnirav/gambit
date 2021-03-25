@@ -3,7 +3,7 @@ import marked from 'marked';
 import useCharacter from '../hooks/useCharacter';
 import ABILITIES from '../game/abilities';
 import ACTIONS from '../game/actions';
-import { Screen, Icon, Badge } from './';
+import { Screen, Icon } from './';
 
 const ActionsScreen = () => {
   const { character, update } = useCharacter();
@@ -18,11 +18,17 @@ const ActionsScreen = () => {
       <Icon
         name={`caret-right${filled ? '-fill' : ''}`}
         onClick={() => {
+          if (name === startingAbility.name) return;
+
           const newAbilities = { ...abilities };
           if (newAbilities[name]) {
-            delete newAbilities[name];
+            if (window.confirm(`Remove ability "${name}"?`)) {
+              delete newAbilities[name];
+            }
           } else {
-            newAbilities[name] = true;
+            if (window.confirm(`Add ability "${name}"?`)) {
+              newAbilities[name] = true;
+            }
           }
           update({ abilities: newAbilities });
         }}
@@ -40,15 +46,26 @@ const ActionsScreen = () => {
         {ACTIONS.map(({ attribute, actions }) => (
           <div key={attribute}>
             <strong>
-              {attribute}{' '}
-              {false && (
-                <Badge rounded color="secondary">
-                  xp: {attributesXP[attribute] || 0} / 6
-                </Badge>
-              )}
+              {attribute} (xp {attributesXP[attribute] || 0}/6)
             </strong>
             {actions.map(action => (
-              <div key={action}>
+              <div
+                key={action}
+                onClick={() => {
+                  const input = window.prompt(
+                    `Edit ${action} rating:`,
+                    actionRatings[action],
+                  );
+                  if (input) {
+                    const rating = parseInt(input);
+                    if (rating >= 0 && rating <= 3) {
+                      update({
+                        actionRatings: { ...actionRatings, [action]: rating },
+                      });
+                    }
+                  }
+                }}
+              >
                 {[0, 1, 2].map(num => (
                   <Icon
                     key={num}

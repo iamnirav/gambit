@@ -33,7 +33,7 @@ const LoadScreen = () => {
   );
 
   return (
-    <Screen title="Load">
+    <Screen title="Items & Load">
       <div className="btn-group mb-3 w-100" role="group" aria-label="load size">
         <input
           type="radio"
