@@ -3,6 +3,7 @@ import { MiniHarm, Container, Icon } from './';
 
 const Header = () => {
   const { character } = useCharacter();
+  if (!character.name) return null;
   const itemLoad = Object.values(character.items).reduce(
     (acc, amt) => acc + amt,
     0,
@@ -10,7 +11,17 @@ const Header = () => {
   return (
     <header className="Header pt-1 border-bottom" style={{ height: 100 }}>
       <Container>
-        <h1 className="display-1">{character.alias || character.name}</h1>
+        <div className="d-flex justify-content-between align-items-center">
+          <h1 className="display-1">{character.alias || character.name}</h1>
+          <div
+            className="fs-1"
+            onClick={() => {
+              window.location.pathname = '/';
+            }}
+          >
+            <Icon name="people" />
+          </div>
+        </div>
 
         <div className="d-flex justify-content-between">
           <div className="p-1">{character.playbook}</div>

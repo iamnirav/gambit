@@ -1,23 +1,12 @@
 import Data from './Data';
-import {
-  Header,
-  Screens,
-  BioScreen,
-  StressScreen,
-  ActionsScreen,
-  LoadScreen,
-} from './components';
+import { Header, CharacterSelect, Screens } from './components';
 
 const App = () => {
   return (
     <Data>
+      <CharacterSelect />
       <Header />
-      <Screens>
-        <BioScreen />
-        <StressScreen />
-        <ActionsScreen />
-        <LoadScreen />
-      </Screens>
+      <Screens />
     </Data>
   );
 };
