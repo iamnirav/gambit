@@ -25,7 +25,7 @@ const BioScreen = () => {
             className="col-8"
             key={field + '-value'}
             onClick={() => {
-              const input = window.prompt(field, character[field]);
+              const input = window.prompt(`Edit ${field}`, character[field]);
               if (typeof input === 'string') {
                 update({ [field]: input });
               }

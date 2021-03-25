@@ -53,7 +53,7 @@ const ActionsScreen = () => {
                 key={action}
                 onClick={() => {
                   const input = window.prompt(
-                    `Edit ${action} rating:`,
+                    `Edit ${action} rating`,
                     actionRatings[action],
                   );
                   if (input) {

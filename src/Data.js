@@ -7,26 +7,66 @@ import {
 } from 'react';
 import initDb from './db';
 import INITIAL_STATE from './game/character';
+import PLAYBOOKS from './game/playbooks';
 
-const CHARACTER_ID = window.location.pathname.slice(1);
+export const CharacterContext = createContext(INITIAL_STATE);
 const db = initDb();
-const characterDoc = db.collection('characters').doc(CHARACTER_ID);
-
-export const CharacterContext = createContext({});
 
 const Data = props => {
   const [character, setCharacter] = useState(INITIAL_STATE);
+  const [charDocRef, setCharDocRef] = useState(undefined);
 
   useEffect(() => {
-    return characterDoc.onSnapshot(
-      doc => setCharacter(doc.data()),
+    let id = window.location.pathname.slice(1);
+
+    if (!id) {
+      const name = window.prompt('Enter new character name');
+      const playbook = window.prompt(
+        `Select playbook: ${PLAYBOOKS.join(', ')}`,
+      );
+      if (name && playbook) {
+        db.collection('characters')
+          .add({ ...INITIAL_STATE, name, playbook })
+          .then(doc => {
+            window.location = `/${doc.id}`;
+          });
+      }
+      return;
+    }
+
+    const docRef = db.collection('characters').doc(id);
+
+    docRef.get().then(doc => {
+      if (doc.exists) {
+        setCharDocRef(docRef);
+      } else {
+        window.alert('No character found.');
+        window.location = '/';
+      }
+    });
+  }, [window.location.pathname]);
+
+  useEffect(() => {
+    if (!charDocRef) return;
+
+    return charDocRef.onSnapshot(
+      doc => {
+        if (doc.exists) {
+          setCharacter(doc.data());
+        }
+      },
       error => console.log('listener error: ' + error),
     );
-  }, [characterDoc]);
+  }, [charDocRef]);
 
-  const update = useCallback(stateChange => {
-    characterDoc.update(stateChange);
-  }, []);
+  const update = useCallback(
+    stateChange => {
+      if (!charDocRef) return;
+
+      charDocRef.update(stateChange);
+    },
+    [charDocRef],
+  );
 
   const state = useMemo(
     () => ({
@@ -44,45 +84,3 @@ const Data = props => {
 };
 
 export default Data;
-
-// The following is slightly outdated!
-
-// playbook: string
-// name: string
-// alias: string
-// look: string
-// heritage: string
-// background: string
-// vice: string
-// cred: number
-// stash: number
-// stress: number
-// trauma: string[]
-// harm: string[]
-// healing: number
-// armor: { string: boolean }
-// attributes: object[]
-//     insight: { name: string, actions: object[], xp: number }
-//         doctor: { name: string, rating: number }
-//         hack
-//         rig
-//         study
-//     prowess
-//         helm
-//         scramble
-//         scrap
-//         skulk
-//     insight
-//         attune
-//         command
-//         consort
-//         sway
-// abilities: object[]
-//     { name: string, description: string, selected: boolean }
-// load: number
-// items: object[]
-//     { name: string, load: number, used: boolean }
-// contacts: object[]
-//     { name: string, description: string, isFriend: boolean, isRival: boolean }
-// xp: number
-// triggers: string[]
