@@ -11,7 +11,7 @@ export default {
   stash: 0,
   stress: 0,
   healing: 0,
-  load: 0,
+  load: 5,
   playbookXP: 0,
   trauma: [],
   harm: {},

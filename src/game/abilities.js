@@ -10,6 +10,41 @@ export default {
       description:
         'You can **push yourself** to do one of the following: *use the Way to throw a table-sized object with dangerous force—propel yourself briefly with superhuman speed.*',
     },
+    {
+      name: 'Psy-Blade',
+      description:
+        'You can focus Way energy into your melee weapon. While charged, the weapon can cut through non-shielded materials with ease, and you gain **potency** on your melee attacks.',
+    },
+    {
+      name: 'Center',
+      description:
+        'You gain **Meditation** as a vice. When you indulge this vice, clear **+1 stress** and add **Dark Visions** as a possible **overindulgence**.',
+    },
+    {
+      name: 'Way Shield',
+      description:
+        'You can block blaster bolts with the Way (**resist** with **resolve**). If you resist a blaster attack, you may spend **1 stress** to redirect fire and make an attack of your own with it.',
+    },
+    {
+      name: 'Warded',
+      description:
+        'You may expend your **special armor** to resist the consequences of a Way attack or artifact use, or **push yourself** when using mystic powers.',
+    },
+    {
+      name: 'Psy-Dancing',
+      description:
+        'You may **push yourself** to cloud a target’s mind and **sway** them in the face of contradictory evidence. Spend **1 stress** for each additional feature: *they have only vague memories of the event—it works on a small group*.',
+    },
+    {
+      name: 'Visions',
+      description:
+        'Spend **1 stress** to remotely view a distant place or person tied to you in some intimate way. Spend **1 stress** for each extra feature: *It lasts for a minute rather than a moment—your target can also see and hear you—you may see something only familiar to you, not intimate*.',
+    },
+    {
+      name: 'Sundering',
+      description:
+        'You may **push yourself** to **attune** to the Way and twist it, causing psychic harm to anyone in the area vulnerable to your assault. You may spend **1 stress** for each additional feature: it damages instead of stuns—you and anyone you choose get **+2d** to **resist** the effects.',
+    },
   ],
   stitch: [
     {
