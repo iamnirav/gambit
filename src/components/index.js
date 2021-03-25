@@ -1,4 +1,5 @@
 export * from './Bootstrap';
+export { default as CharacterSelect } from './CharacterSelect';
 export { default as Screens } from './Screens';
 export { default as Screen } from './Screen';
 export { default as BioScreen } from './BioScreen';
