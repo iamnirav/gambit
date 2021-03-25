@@ -15,7 +15,7 @@ const FIELDS = [
 const BioScreen = () => {
   const { character, update } = useCharacter();
   return (
-    <Screen title="Bio">
+    <Screen title="Bio & Playbook">
       <dl className="row">
         {FIELDS.map(field => [
           <dt className="col-4 text-end" key={field}>
@@ -26,7 +26,7 @@ const BioScreen = () => {
             key={field + '-value'}
             onClick={() => {
               const input = window.prompt(field, character[field]);
-              if (input) {
+              if (typeof input === 'string') {
                 update({ [field]: input });
               }
             }}
@@ -37,7 +37,7 @@ const BioScreen = () => {
         <dt className="col-4 text-end">playbook</dt>
         <dd className="col-8">
           <select
-            style={{ marginTop: -2 }}
+            style={{ marginTop: -3 }}
             className="form-select form-select-sm"
             aria-label="playbook selector"
             value={character.playbook}

@@ -6,34 +6,11 @@ import {
   useEffect,
 } from 'react';
 import initDb from './db';
+import INITIAL_STATE from './game/character';
 
-const CHARACTER_ID = 'qzCn6i1Y3fdKTE45iUZp';
+const CHARACTER_ID = window.location.pathname.slice(1);
 const db = initDb();
 const characterDoc = db.collection('characters').doc(CHARACTER_ID);
-const INITIAL_STATE = {
-  playbook: '',
-  alias: '',
-  name: '',
-  pronouns: '',
-  look: '',
-  heritage: '',
-  background: '',
-  vice: '',
-  cred: 0,
-  stash: 0,
-  stress: 0,
-  healing: 0,
-  load: 0,
-  playbookXP: 0,
-  trauma: [],
-  harm: {},
-  contacts: {},
-  abilities: {},
-  armor: {},
-  items: {},
-  actionRatings: {},
-  attributesXP: {},
-};
 
 export const CharacterContext = createContext({});
 
