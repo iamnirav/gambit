@@ -1,0 +1,44 @@
+{
+  "settings": {
+    "react": {
+      "version": "99"
+    }
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/all"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest"],
+  "rules": {
+    "semi": "error",
+    "jest/no-test-callback": 0,
+    "jest/no-disabled-tests": 1,
+    "jest/no-hooks": [
+      "error",
+      {
+        "allow": ["beforeAll", "afterAll"]
+      }
+    ],
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": "off"
+  }
+}
