@@ -26,12 +26,12 @@ const Data = props => {
       if (doc.exists) {
         const recentIds =
           window.localStorage.getItem(CHAR_ID_STORAGE_KEY) || '';
-        if (!recentIds.includes(doc.id)) {
-          window.localStorage.setItem(
-            CHAR_ID_STORAGE_KEY,
-            `${recentIds} ${doc.id}`.trim(),
-          );
-        }
+        const idsArray = recentIds.split(' ').filter(id => id && id !== doc.id);
+        idsArray.unshift(doc.id);
+        window.localStorage.setItem(
+          CHAR_ID_STORAGE_KEY,
+          idsArray.slice(0, 5).join(' '),
+        );
 
         setCharDocRef(docRef);
       } else {
