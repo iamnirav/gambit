@@ -46,6 +46,53 @@ export default {
         'You may **push yourself** to **attune** to the Way and twist it, causing psychic harm to anyone in the area vulnerable to your assault. You may spend **1 stress** for each additional feature: it damages instead of stuns—you and anyone you choose get **+2d** to **resist** the effects.',
     },
   ],
+  pilot: [
+    {
+      name: 'Ace Pilot',
+      description:
+        'You have **potency** on all speed-related rolls. When you roll to **resist** the consequences of piloting, gain **+1d**.',
+    },
+    {
+      name: 'Keen Eye',
+      description:
+        'You have sharp eyes and notice small details many might overlook. Gain **+1d** when firing ship guns or making trick shots.',
+    },
+    {
+      name: 'Side Job',
+      description:
+        'You may spend a **downtime** activity in port doing odd jobs. Gain **1 cred**. If there are rumors floating about, the GM will tell you of them.',
+    },
+    {
+      name: 'Exceed Specs',
+      description:
+        'While onboard a ship you may damage a ship system you have access to in order to gain **+1d** or **+1 effect** to a roll.',
+    },
+    {
+      name: 'Leaf on the Wind',
+      description:
+        'When you **push** yourself**, you may spend **+1 stress** (**3 stress** total) to gain both **+1 effect** and **+1d** instead of one or the other.',
+    },
+    {
+      name: 'Hedonist',
+      description:
+        'When you indulge your **vice**, you may adjust the dice outcome by +/-2. An ally who joins you may do the same.',
+    },
+    {
+      name: 'Commander',
+      description:
+        'Whenever you lead a **group action**, gain **+1 scale** (for example, a small group counts as a medium group). If you lead a group action in combat, you may count multiple **6**s from different rolls as a **critical**.',
+    },
+    {
+      name: 'Traveler',
+      description:
+        'You’re comfortable around unusual cultures and xenos. You gain **potency** when attempting to **consort** with or **sway** them.',
+    },
+    {
+      name: 'Punch It!',
+      description:
+        'When you spend a **gambit** on a **desperate** roll, it counts as **risky** instead.',
+    },
+  ],
   stitch: [
     {
       name: 'I’m a Doctor, Not a…',

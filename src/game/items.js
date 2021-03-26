@@ -1,4 +1,4 @@
-export const commonItems = [
+export const COMMON_ITEMS = [
   { name: 'Blaster Pistol', load: 1 },
   { name: '2nd Blaster Pistol', load: 1 },
   { name: 'Melee Weapon', load: 1 },
@@ -14,7 +14,7 @@ export const commonItems = [
   { name: 'Spacesuit', load: 2 },
 ];
 
-export const playbookItems = {
+export const PLAYBOOK_ITEMS = {
   mechanic: [
     { name: 'Fine Hacking Rig', load: 1 },
     { name: 'Fine Ship Repair Tools', load: 2 },
@@ -22,6 +22,14 @@ export const playbookItems = {
     { name: 'Vision-Enhancing Goggles', load: 1 },
     { name: 'Spare Parts', load: 1 },
     { name: 'Genius Pet', load: 0 },
+  ],
+  pilot: [
+    { name: 'Fine Customized Spacesuit', load: 2 },
+    { name: 'Fine Small Urbot', load: 2 },
+    { name: 'Fine Mechanics Kit', load: 1 },
+    { name: 'Grappling Hook', load: 1 },
+    { name: 'Guild License', load: 1 },
+    { name: 'Victory Cigars', load: 0 },
   ],
   mystic: [
     { name: 'Fine Melee Weapon', load: 2 },
