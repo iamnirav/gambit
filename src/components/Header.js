@@ -26,6 +26,9 @@ const Header = () => {
         <div className="d-flex justify-content-between">
           <div className="p-1">{character.playbook}</div>
           <div className="p-1">
+            <Icon name="slash-circle" /> {character.cred}/4
+          </div>
+          <div className="p-1">
             <Icon name="speedometer" /> {character.stress}/9
           </div>
           <div className="p-1 align-middle">
