@@ -3,6 +3,7 @@ import useCharacter from '../hooks/useCharacter';
 import { Container, Icon } from './';
 import PLAYBOOKS from '../game/playbooks';
 import NEW_CHARACTER from '../game/character';
+import { STARTING_RATINGS } from '../game/actions';
 import { db, CHAR_ID_STORAGE_KEY } from '../Data';
 
 const CharacterSelect = () => {
@@ -64,7 +65,12 @@ function createNew() {
   const playbook = window.prompt(`Select playbook: ${PLAYBOOKS.join(', ')}`);
   if (name && PLAYBOOKS.includes(playbook)) {
     db.collection('characters')
-      .add({ ...NEW_CHARACTER, name, playbook })
+      .add({
+        ...NEW_CHARACTER,
+        name,
+        playbook,
+        actionRatings: STARTING_RATINGS[playbook],
+      })
       .then(doc => {
         window.location = `/${doc.id}`;
       });
