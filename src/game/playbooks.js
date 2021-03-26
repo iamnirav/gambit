@@ -1,1 +1,1 @@
-export default ['mystic', 'stitch'];
+export default ['mystic', 'pilot', 'stitch'];

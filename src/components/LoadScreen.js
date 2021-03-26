@@ -1,12 +1,12 @@
 import useCharacter from '../hooks/useCharacter';
 import { Screen, Checkbox, Progress } from './';
-import { commonItems, playbookItems } from '../game/items';
+import { COMMON_ITEMS, PLAYBOOK_ITEMS } from '../game/items';
 
 const LoadScreen = () => {
   const { character, update } = useCharacter();
   const { playbook, load: characterLoad, items } = character;
 
-  if (!playbookItems[playbook]) return null;
+  if (!PLAYBOOK_ITEMS[playbook]) return null;
 
   const itemLoad = Object.values(items).reduce((acc, amt) => acc + amt, 0);
 
@@ -76,11 +76,11 @@ const LoadScreen = () => {
       </div>
       <Progress now={itemLoad} max={characterLoad} />
       <hr />
-      {playbookItems[playbook].map(item => (
+      {PLAYBOOK_ITEMS[playbook].map(item => (
         <Item key={item.name} {...item} />
       ))}
       <hr />
-      {commonItems.map(item => (
+      {COMMON_ITEMS.map(item => (
         <Item key={item.name} {...item} />
       ))}
     </Screen>
