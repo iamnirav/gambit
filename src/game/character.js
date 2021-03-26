@@ -1,5 +1,4 @@
 export default {
-  playbook: '',
   alias: '',
   name: '',
   pronouns: '',
@@ -7,18 +6,24 @@ export default {
   heritage: '',
   background: '',
   vice: '',
+  playbook: '',
+  triggers: [],
+  contacts: {},
+  playbookXP: 0,
+
   cred: 0,
   stash: 0,
+
   stress: 0,
-  healing: 0,
-  load: 5,
-  playbookXP: 0,
   trauma: [],
   harm: {},
-  contacts: {},
-  abilities: {},
+  healing: 0,
   armor: {},
-  items: {},
-  actionRatings: {},
+
   attributesXP: {},
+  actionRatings: {},
+  abilities: {},
+
+  load: 5,
+  items: {},
 };
