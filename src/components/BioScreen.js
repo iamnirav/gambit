@@ -60,7 +60,7 @@ const BioScreen = () => {
             }
           }}
         >
-          {character.stash} ({Math.floor(character.stash / 10)} lifestyle)
+          {character.stash} (lifestyle tier {Math.floor(character.stash / 10)})
         </dd>
 
         <dt className="col-4 text-end">Playbook</dt>
