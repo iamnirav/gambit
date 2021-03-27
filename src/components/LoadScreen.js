@@ -3,7 +3,7 @@ import { Screen, Checkbox, Progress } from './';
 import { COMMON_ITEMS, PLAYBOOK_ITEMS } from '../game/items';
 
 const LoadScreen = () => {
-  const { character, update } = useCharacter();
+  const { character, update, deleteField } = useCharacter();
   const { playbook, load: characterLoad, items } = character;
 
   if (!PLAYBOOK_ITEMS[playbook]) return null;
@@ -16,13 +16,9 @@ const LoadScreen = () => {
       checked={items[name] !== undefined}
       disabled={items[name] === undefined && itemLoad + load > characterLoad}
       onChange={() => {
-        const newItems = { ...items };
-        if (newItems[name] !== undefined) {
-          delete newItems[name];
-        } else {
-          newItems[name] = load;
-        }
-        update({ items: newItems });
+        update({
+          [`items.${name}`]: items[name] !== undefined ? deleteField() : load,
+        });
       }}
       id={`item-${name}`}
     >

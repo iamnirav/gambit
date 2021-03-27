@@ -2,7 +2,7 @@ import useCharacter from '../hooks/useCharacter';
 import PLAYBOOKS from '../game/playbooks';
 import { COMMON_TRIGGERS, PLAYBOOK_TRIGGERS } from '../game/triggers';
 import CONTACTS from '../game/contacts';
-import { Screen } from './';
+import { Screen, Icon } from './';
 
 const FIELDS = [
   'alias',
@@ -92,6 +92,30 @@ const BioScreen = () => {
           <ul className="list-group">
             {CONTACTS[character.playbook].contacts.map(contact => (
               <li key={contact.name} className="list-group-item">
+                <Icon
+                  name={`caret-up${
+                    character.contacts.friend === contact.name ? '-fill' : ''
+                  }`}
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `Set ${contact.name} as your close friend?`,
+                      )
+                    ) {
+                      update({ 'contacts.friend': contact.name });
+                    }
+                  }}
+                />
+                <Icon
+                  name={`caret-down${
+                    character.contacts.rival === contact.name ? '-fill' : ''
+                  }`}
+                  onClick={() => {
+                    if (window.confirm(`Set ${contact.name} as your rival?`)) {
+                      update({ 'contacts.rival': contact.name });
+                    }
+                  }}
+                />{' '}
                 {contact.name}, {contact.description}
               </li>
             ))}
