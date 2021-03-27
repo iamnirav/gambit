@@ -5,6 +5,7 @@ import {
   useMemo,
   useEffect,
 } from 'react';
+import firebase from 'firebase/app';
 import initDb from './db';
 
 export const CHAR_ID_STORAGE_KEY = 'recent-character-ids';
@@ -67,6 +68,9 @@ const Data = props => {
     () => ({
       character,
       update,
+      deleteField: firebase.firestore.FieldValue.delete,
+      removeFromArray: firebase.firestore.FieldValue.arrayRemove,
+      addToArray: firebase.firestore.FieldValue.arrayUnion,
     }),
     [character, update],
   );

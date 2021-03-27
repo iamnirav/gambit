@@ -2,7 +2,7 @@ import useCharacter from '../hooks/useCharacter';
 import { Screen, Badge, Checkbox, Progress, Icon, MiniHarm } from './';
 
 const StressScreen = () => {
-  const { character, update } = useCharacter();
+  const { character, update, addToArray, removeFromArray } = useCharacter();
   const { stress, trauma, harm, healing, armor } = character;
   return (
     <Screen title="Stress & Harm">
@@ -26,7 +26,7 @@ const StressScreen = () => {
           style={{ marginLeft: 5 }}
           onClick={() => {
             if (window.confirm(`Remove trauma "${traumaItem}"?`)) {
-              update({ trauma: trauma.filter(t => t !== traumaItem) });
+              update({ trauma: removeFromArray(traumaItem) });
             }
           }}
         >
@@ -40,7 +40,7 @@ const StressScreen = () => {
         onClick={() => {
           const input = window.prompt('Add new trauma');
           if (input) {
-            update({ trauma: [...trauma, input] });
+            update({ trauma: addToArray(input) });
           }
         }}
       >
@@ -62,7 +62,7 @@ const StressScreen = () => {
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelThree);
                 if (typeof input === 'string') {
-                  update({ harm: { ...harm, levelThree: input } });
+                  update({ 'harm.levelThree': input });
                 }
               }}
             >
@@ -83,7 +83,7 @@ const StressScreen = () => {
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelTwoA);
                 if (typeof input === 'string') {
-                  update({ harm: { ...harm, levelTwoA: input } });
+                  update({ 'harm.levelTwoA': input });
                 }
               }}
             >
@@ -94,7 +94,7 @@ const StressScreen = () => {
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelTwoB);
                 if (typeof input === 'string') {
-                  update({ harm: { ...harm, levelTwoB: input } });
+                  update({ 'harm.levelTwoB': input });
                 }
               }}
             >
@@ -117,7 +117,7 @@ const StressScreen = () => {
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelOneA);
                 if (typeof input === 'string') {
-                  update({ harm: { ...harm, levelOneA: input } });
+                  update({ 'harm.levelOneA': input });
                 }
               }}
             >
@@ -128,7 +128,7 @@ const StressScreen = () => {
               onClick={() => {
                 const input = window.prompt('Edit harm', harm.levelOneB);
                 if (typeof input === 'string') {
-                  update({ harm: { ...harm, levelOneB: input } });
+                  update({ 'harm.levelOneB': input });
                 }
               }}
             >
@@ -156,7 +156,7 @@ const StressScreen = () => {
         <Checkbox
           key={type}
           checked={!!armor[type]}
-          onChange={() => update({ armor: { ...armor, [type]: !armor[type] } })}
+          onChange={() => update({ [`armor.${type}`]: !armor[type] })}
           id={`armor-${type}`}
         >
           {type} armor

@@ -70,7 +70,7 @@ export default {
     {
       name: 'Leaf on the Wind',
       description:
-        'When you **push** yourself**, you may spend **+1 stress** (**3 stress** total) to gain both **+1 effect** and **+1d** instead of one or the other.',
+        'When you **push yourself**, you may spend **+1 stress** (**3 stress** total) to gain both **+1 effect** and **+1d** instead of one or the other.',
     },
     {
       name: 'Hedonist',
