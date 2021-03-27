@@ -37,7 +37,7 @@ const BioScreen = () => {
           </dd>,
         ])}
 
-        <dt className="col-4 text-end text-capitalize">Cred</dt>
+        <dt className="col-4 text-end">Cred</dt>
         <dd
           className="col-8"
           onClick={() => {
@@ -50,7 +50,7 @@ const BioScreen = () => {
           {character.cred}/4
         </dd>
 
-        <dt className="col-4 text-end text-capitalize">Stash</dt>
+        <dt className="col-4 text-end">Stash</dt>
         <dd
           className="col-8"
           onClick={() => {
@@ -121,6 +121,26 @@ const BioScreen = () => {
             ))}
           </ul>
         </dd>
+
+        <dt className="col-4 text-end">Playbook XP</dt>
+        <dd
+          className="col-8"
+          onClick={() => {
+            const input = window.prompt(
+              `Edit playbook XP`,
+              character.playbookXP || 0,
+            );
+            if (input) {
+              const xp = parseInt(input);
+              if (xp >= 0 && xp <= 8) {
+                update({ playbookXP: xp });
+              }
+            }
+          }}
+        >
+          {character.playbookXP}/8
+        </dd>
+
         <dt className="col-4 text-end">XP Triggers</dt>
         <dd className="col-8">
           <ul className="list-group">
