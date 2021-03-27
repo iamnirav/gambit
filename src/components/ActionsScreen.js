@@ -6,11 +6,8 @@ import ACTIONS from '../game/actions';
 import { Screen, Icon } from './';
 
 const ActionsScreen = () => {
-  const { character, update } = useCharacter();
+  const { character, update, deleteField } = useCharacter();
   const { abilities, playbook, actionRatings, attributesXP } = character;
-
-  if (!ABILITIES[playbook]) return null;
-
   const [startingAbility, ...specialAbilities] = ABILITIES[playbook];
 
   const Ability = ({ name, description, filled }) => (
@@ -20,17 +17,15 @@ const ActionsScreen = () => {
         onClick={() => {
           if (name === startingAbility.name) return;
 
-          const newAbilities = { ...abilities };
-          if (newAbilities[name]) {
-            if (window.confirm(`Remove ability "${name}"?`)) {
-              delete newAbilities[name];
-            }
-          } else {
-            if (window.confirm(`Add ability "${name}"?`)) {
-              newAbilities[name] = true;
-            }
+          if (
+            window.confirm(
+              `${abilities[name] ? 'Remove' : 'Add'} ability "${name}"?`,
+            )
+          ) {
+            update({
+              [`abilities.${name}`]: abilities[name] ? deleteField() : true,
+            });
           }
-          update({ abilities: newAbilities });
         }}
       />
       <strong>{name}: </strong>
@@ -42,12 +37,26 @@ const ActionsScreen = () => {
 
   return (
     <Screen title="Actions & Abilities">
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between text-capitalize">
         {ACTIONS.map(({ attribute, actions }) => (
           <div key={attribute}>
-            <strong>
-              {attribute} (xp {attributesXP[attribute] || 0}/6)
-            </strong>
+            <div
+              onClick={() => {
+                const input = window.prompt(
+                  `Edit ${attribute} XP`,
+                  attributesXP[attribute] || 0,
+                );
+                if (input) {
+                  const xp = parseInt(input);
+                  if (xp >= 0 && xp <= 6) {
+                    update({ [`attributesXP.${attribute}`]: xp });
+                  }
+                }
+              }}
+            >
+              <strong>{attribute}</strong>
+              <div>XP: {attributesXP[attribute] || 0}/6</div>
+            </div>
             {actions.map(action => (
               <div
                 key={action}
@@ -59,9 +68,7 @@ const ActionsScreen = () => {
                   if (input) {
                     const rating = parseInt(input);
                     if (rating >= 0 && rating <= 3) {
-                      update({
-                        actionRatings: { ...actionRatings, [action]: rating },
-                      });
+                      update({ [`actionRatings.${action}`]: rating });
                     }
                   }
                 }}
@@ -69,6 +76,7 @@ const ActionsScreen = () => {
                 {[0, 1, 2].map(num => (
                   <Icon
                     key={num}
+                    style={{ marginLeft: -4 }}
                     name={`caret-right${
                       actionRatings[action] > num ? '-fill' : ''
                     }`}
