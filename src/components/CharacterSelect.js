@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import useCharacter from '../hooks/useCharacter';
 import { Container, Icon } from './';
-import PLAYBOOKS from '../game/playbooks';
-import NEW_CHARACTER from '../game/character';
+import NEW_CHARACTER, { PLAYBOOKS } from '../game/character';
 import { STARTING_RATINGS } from '../game/actions';
 import { db, CHAR_ID_STORAGE_KEY } from '../Data';
 
