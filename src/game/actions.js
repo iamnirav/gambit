@@ -5,7 +5,11 @@ export default [
 ];
 
 export const STARTING_RATINGS = {
+  mechanic: { rig: 2, study: 1 },
+  muscle: { scrap: 2, command: 1 },
   mystic: { scramble: 1, attune: 2 },
   pilot: { rig: 1, helm: 2 },
+  scoundrel: { skulk: 1, sway: 2 },
+  speaker: { command: 1, consort: 2 },
   stitch: { doctor: 2, study: 1 },
 };

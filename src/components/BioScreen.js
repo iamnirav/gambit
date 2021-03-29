@@ -1,5 +1,5 @@
 import useCharacter from '../hooks/useCharacter';
-import PLAYBOOKS from '../game/playbooks';
+import { PLAYBOOKS } from '../game/character';
 import { COMMON_TRIGGERS, PLAYBOOK_TRIGGERS } from '../game/triggers';
 import CONTACTS from '../game/contacts';
 import { Screen, Icon } from './';
