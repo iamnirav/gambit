@@ -6,13 +6,12 @@ export default {
   heritage: '',
   background: '',
   vice: '',
-  playbook: '',
-  triggers: [],
-  contacts: {},
-  playbookXP: 0,
-
   cred: 0,
   stash: 0,
+  playbook: '',
+  triggers: [],
+  playbookXP: 0,
+  contacts: {},
 
   stress: 0,
   trauma: [],
@@ -27,3 +26,13 @@ export default {
   load: 5,
   items: {},
 };
+
+export const PLAYBOOKS = [
+  'mechanic',
+  'muscle',
+  'mystic',
+  'pilot',
+  'scoundrel',
+  'speaker',
+  'stitch',
+];
