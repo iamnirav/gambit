@@ -6,8 +6,12 @@ import ACTIONS from '../game/actions';
 import { Screen, Icon } from './';
 
 const ActionsScreen = () => {
-  const { character, update, deleteField } = useCharacter();
-  const { abilities, playbook, actionRatings, attributesXP } = character;
+  const { character, update, addToArray, removeFromArray } = useCharacter();
+  const { playbook, actionRatings, attributesXP } = character;
+  const abilities = character.abilities.reduce((acc, ability) => {
+    acc[ability] = true;
+    return acc;
+  }, {});
   const [startingAbility, ...specialAbilities] = ABILITIES[playbook];
 
   const Ability = ({ name, description, filled }) => (
@@ -23,7 +27,9 @@ const ActionsScreen = () => {
             )
           ) {
             update({
-              [`abilities.${name}`]: abilities[name] ? deleteField() : true,
+              abilities: abilities[name]
+                ? removeFromArray(name)
+                : addToArray(name),
             });
           }
         }}
