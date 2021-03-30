@@ -13,12 +13,11 @@ export const CharacterContext = createContext({});
 export const db = initDb();
 
 const Data = props => {
+  const { id, children } = props;
   const [character, setCharacter] = useState({});
   const [charDocRef, setCharDocRef] = useState(undefined);
 
   useEffect(() => {
-    const id = window.location.pathname.slice(1);
-
     if (!id) return;
 
     const docRef = db.collection('characters').doc(id);
@@ -40,7 +39,7 @@ const Data = props => {
         window.location = '/';
       }
     });
-  }, [window.location.pathname]);
+  }, [id]);
 
   useEffect(() => {
     if (!charDocRef) return;
@@ -77,7 +76,7 @@ const Data = props => {
 
   return (
     <CharacterContext.Provider value={state}>
-      {props.children}
+      {children}
     </CharacterContext.Provider>
   );
 };
