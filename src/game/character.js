@@ -12,6 +12,8 @@ export default {
   triggers: [],
   playbookXP: 0,
   contacts: {},
+  clocks: [],
+  beliefs: [],
 
   stress: 0,
   trauma: [],
@@ -21,10 +23,10 @@ export default {
 
   attributesXP: {},
   actionRatings: {},
-  abilities: {},
+  abilities: [],
 
   load: 5,
-  items: {},
+  items: [],
 };
 
 export const PLAYBOOKS = [

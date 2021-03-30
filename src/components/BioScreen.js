@@ -15,7 +15,7 @@ const FIELDS = [
 ];
 
 const BioScreen = () => {
-  const { character, update } = useCharacter();
+  const { character, update, addToArray, removeFromArray } = useCharacter();
   return (
     <Screen title="Bio & Playbook">
       <dl className="row">
@@ -151,6 +151,40 @@ const BioScreen = () => {
                 </li>
               ),
             )}
+          </ul>
+        </dd>
+
+        <dt className="col-4 text-end">Beliefs/Drives</dt>
+        <dd className="col-8">
+          <ul className="list-group">
+            {character.beliefs.map(belief => (
+              <li key={belief} className="list-group-item d-flex">
+                {belief}{' '}
+                <Icon
+                  name="x-circle"
+                  onClick={() => {
+                    if (window.confirm(`Remove "${belief}"?`)) {
+                      update({
+                        beliefs: removeFromArray(belief),
+                      });
+                    }
+                  }}
+                />
+              </li>
+            ))}
+            <li className="list-group-item text-end">
+              <Icon
+                name="plus-circle"
+                onClick={() => {
+                  const input = window.prompt('Add belief/drive');
+                  if (input) {
+                    update({
+                      beliefs: addToArray(input),
+                    });
+                  }
+                }}
+              />
+            </li>
           </ul>
         </dd>
       </dl>

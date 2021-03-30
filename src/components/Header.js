@@ -4,10 +4,7 @@ import { MiniHarm, Container, Icon } from './';
 const Header = () => {
   const { character } = useCharacter();
   if (!character.name) return null;
-  const itemLoad = Object.values(character.items).reduce(
-    (acc, amt) => acc + amt,
-    0,
-  );
+  const itemLoad = character.items.reduce((acc, item) => acc + item.load, 0);
   return (
     <header className="Header pt-1 border-bottom" style={{ height: 100 }}>
       <Container>

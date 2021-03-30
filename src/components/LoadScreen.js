@@ -3,27 +3,35 @@ import { Screen, Checkbox, Progress } from './';
 import { COMMON_ITEMS, PLAYBOOK_ITEMS } from '../game/items';
 
 const LoadScreen = () => {
-  const { character, update, deleteField } = useCharacter();
+  const { character, update, addToArray, removeFromArray } = useCharacter();
   const { playbook, load: characterLoad, items } = character;
+  const characterItems = items.reduce((acc, item) => {
+    acc[item.name] = item;
+    return acc;
+  }, {});
 
   if (!PLAYBOOK_ITEMS[playbook]) return null;
 
-  const itemLoad = Object.values(items).reduce((acc, amt) => acc + amt, 0);
+  const itemLoad = items.reduce((acc, item) => acc + item.load, 0);
 
-  const Item = ({ name, load }) => (
+  const Item = item => (
     <Checkbox
-      key={name}
-      checked={items[name] !== undefined}
-      disabled={items[name] === undefined && itemLoad + load > characterLoad}
+      key={item.name}
+      checked={characterItems[item.name]}
+      disabled={
+        !characterItems[item.name] && itemLoad + item.load > characterLoad
+      }
       onChange={() => {
         update({
-          [`items.${name}`]: items[name] !== undefined ? deleteField() : load,
+          items: characterItems[item.name]
+            ? removeFromArray(item)
+            : addToArray(item),
         });
       }}
-      id={`item-${name}`}
+      id={`item-${item.name}`}
     >
-      <span className={load ? '' : 'fst-italic'}>
-        {name} - {load}
+      <span className={item.load ? '' : 'fst-italic'}>
+        {item.name} ({item.load})
       </span>
     </Checkbox>
   );
