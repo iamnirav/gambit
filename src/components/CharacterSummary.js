@@ -5,11 +5,8 @@ import ACTIONS from '../game/actions';
 const CharacterSummary = () => {
   const { character } = useCharacter();
   if (!character.name) return null;
-  const { actionRatings } = character;
-  const itemLoad = Object.values(character.items).reduce(
-    (acc, amt) => acc + amt,
-    0,
-  );
+  const itemLoad = character.items.reduce((acc, item) => acc + item.load, 0);
+
   return (
     <div className="CharacterSummary p-3">
       <h1>{character.alias || character.name}</h1>
@@ -42,7 +39,7 @@ const CharacterSummary = () => {
                     key={num}
                     style={{ marginLeft: -4 }}
                     name={`caret-right${
-                      actionRatings[action] > num ? '-fill' : ''
+                      character.actionRatings[action] > num ? '-fill' : ''
                     }`}
                   />
                 ))}
