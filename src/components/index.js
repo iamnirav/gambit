@@ -8,3 +8,4 @@ export { default as ActionsScreen } from './ActionsScreen';
 export { default as LoadScreen } from './LoadScreen';
 export { default as Header } from './Header';
 export { default as MiniHarm } from './MiniHarm';
+export { default as CharacterSummary } from './CharacterSummary';

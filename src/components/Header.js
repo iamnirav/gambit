@@ -16,7 +16,7 @@ const Header = () => {
           <div
             className="fs-1"
             onClick={() => {
-              window.location.pathname = '/';
+              window.location = '/';
             }}
           >
             <Icon name="people" />

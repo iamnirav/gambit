@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import useCharacter from '../hooks/useCharacter';
 import { Container, Icon } from './';
 import NEW_CHARACTER, { PLAYBOOKS } from '../game/character';
 import { STARTING_RATINGS } from '../game/actions';
 import { db, CHAR_ID_STORAGE_KEY } from '../Data';
 
 const CharacterSelect = () => {
-  const { character } = useCharacter();
   const [recents, setRecents] = useState([]);
   const [playbookSelect, setPlaybookSelect] = useState('placeholder');
   const [idInput, setIdInput] = useState('');
@@ -31,8 +29,6 @@ const CharacterSelect = () => {
     }
   }, [recentIds]);
 
-  if (character.name) return null;
-
   return (
     <Container fluid className="CharacterSelect p-5">
       <h1 className="display-1">Gambit</h1>
@@ -45,7 +41,7 @@ const CharacterSelect = () => {
           <a
             key={id}
             className="list-group-item list-group-item-action d-flex justify-content-between"
-            href={`/${id}`}
+            href={`/characters/${id}`}
           >
             <span>
               {data.alias || data.name} ({data.playbook})
@@ -107,7 +103,7 @@ function loadById(id) {
     .get()
     .then(doc => {
       if (doc.exists) {
-        window.location = `/${doc.id}`;
+        window.location = `/characters/${doc.id}`;
       }
     });
 }
@@ -123,7 +119,7 @@ function createNew(playbook) {
         actionRatings: STARTING_RATINGS[playbook],
       })
       .then(doc => {
-        window.location = `/${doc.id}`;
+        window.location = `/characters/${doc.id}`;
       });
   }
 }
