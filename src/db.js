@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const FIREBASE_CONFIG = {
-  apiKey: '***REMOVED***',
+  // apiKey
   authDomain: 'gambit-app.firebaseapp.com',
   projectId: 'gambit-app',
 };
